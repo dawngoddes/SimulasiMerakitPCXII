@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LKPD Simulasi Rakit PC - Enterkomputer</title>
+<style>
+:root{
+  --primary:#2563eb; --primary2:#1d4ed8; --bg:#eef4ff; --card:#fff;
+  --text:#172033; --muted:#64748b; --border:#dbe3ef; --green:#15803d;
+  --yellow:#b45309; --red:#b91c1c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(135deg,#eef4ff,#f8fafc);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);line-height:1.5}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.hero{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:white;border-radius:22px;padding:30px;box-shadow:0 12px 30px rgba(30,58,138,.18);margin-bottom:20px}
+.hero .badge{display:inline-block;background:rgba(255,255,255,.15);padding:6px 12px;border-radius:999px;font-size:13px;margin-bottom:10px}
+.hero h1{margin:0 0 8px;font-size:30px}
+.hero p{margin:5px 0;color:#dbeafe}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 5px 18px rgba(15,23,42,.05)}
+h2{font-size:20px;margin:0 0 15px;color:#1e3a8a}
+h3{font-size:16px;margin:18px 0 8px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.field label{display:block;font-weight:700;margin-bottom:6px}
+select,input,textarea{width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;background:white}
+textarea{min-height:80px;resize:vertical}
+.info{background:#eff6ff;border-left:5px solid var(--primary);padding:14px;border-radius:10px;margin:12px 0}
+.warning{background:#fff7ed;border-left:5px solid #f59e0b;padding:14px;border-radius:10px}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+button,.linkbtn{border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.primary{background:var(--primary);color:white}.secondary{background:#e2e8f0;color:#0f172a}
+.green{background:#16a34a;color:white}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{border:1px solid var(--border);padding:9px;vertical-align:middle}
+th{background:#eff6ff;color:#1e3a8a;text-align:left}
+td input{min-width:100px}
+.price{width:150px!important}
+.totalbox{display:flex;justify-content:space-between;align-items:center;background:#eff6ff;border:1px solid #bfdbfe;border-radius:14px;padding:15px;margin-top:12px;font-size:18px;font-weight:800}
+.compat td:first-child{font-weight:700}
+.radio{display:flex;gap:18px;flex-wrap:wrap}
+.radio label{font-weight:500}
+.checkgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.checkitem{border:1px solid var(--border);padding:12px;border-radius:12px;background:#fafcff}
+.small{font-size:13px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);padding:15px 0 35px;font-size:13px}
+@media(max-width:700px){.container{padding:12px}.grid,.checkgrid{grid-template-columns:1fr}.hero h1{font-size:24px}table{display:block;overflow-x:auto;white-space:nowrap}}
+@media print{
+ body{background:white}.container{max-width:none;padding:0}.hero{color:#111;background:white;border:2px solid #1e3a8a;box-shadow:none}
+ .card{box-shadow:none;break-inside:avoid}.btnrow,.no-print{display:none!important}
+ input,select,textarea{border:1px solid #999}.hero p{color:#333}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="hero">
+  <div class="badge">LKPD INTERAKTIF • INFORMATIKA</div>
+  <h1>🖥️ Simulasi Merakit PC</h1>
+  <p><b>Misi:</b> Rancang sebuah PC yang sesuai kebutuhan, kompatibel, dan tidak melebihi anggaran.</p>
+  <p>Gunakan simulasi rakit PC <b>Enterkomputer</b> untuk mencari komponen dan harga.</p>
+</header>
+
+<section class="card">
+<h2>1. Identitas Kelompok</h2>
+<div class="grid">
+  <div class="field">
+    <label>Nama Kelompok — pilih bunga/buah</label>
+    <select id="group">
+      <option value="">-- Pilih Nama Kelompok --</option>
+      <optgroup label="🌸 Bunga">
+        <option>Anggrek</option><option>Mawar</option><option>Melati</option><option>Kenanga</option>
+        <option>Teratai</option><option>Lavender</option><option>Jasmine</option><option>Tulip</option>
+        <option>Bugenvil</option><option>Sunflower</option><option>Kamboja</option><option>Anyelir</option>
+      </optgroup>
+      <optgroup label="🍎 Buah">
+        <option>Apel</option><option>Mangga</option><option>Jeruk</option><option>Stroberi</option>
+        <option>Semangka</option><option>Melon</option><option>Pisang</option><option>Anggur</option>
+        <option>Alpukat</option><option>Nanas</option><option>Durian</option><option>Rambutan</option>
+      </optgroup>
+    </select>
+  </div>
+  <div class="field">
+    <label>Anggota 1</label>
+    <select id="member1"><option value="">-- Pilih Anggota --</option></select>
+  </div>
+  <div class="field">
+    <label>Anggota 2</label>
+    <select id="member2"><option value="">-- Pilih Anggota --</option></select>
+  </div>
+  <div class="field">
+    <label>Tanggal</label>
+    <input type="date" id="date">
+  </div>
+</div>
+</section>
+
+<section class="card">
+<h2>2. Tujuan Kegiatan</h2>
+<ol>
+<li>Mengenali komponen utama PC.</li>
+<li>Memilih komponen sesuai kebutuhan pengguna.</li>
+<li>Memeriksa kompatibilitas antar-komponen.</li>
+<li>Menghitung total harga PC.</li>
+<li>Menjelaskan alasan pemilihan komponen.</li>
+</ol>
+<div class="info"><b>Ingat:</b> Komponen bagus belum tentu cocok. Perhatikan <b>socket, jenis RAM, ukuran casing, daya PSU, konektor, dan kompatibilitas lainnya.</b></div>
+</section>
+
+<section class="card">
+<h2>3. Misi Kelompok</h2>
+<p>Pilih salah satu kebutuhan PC berikut.</p>
+<div class="grid">
+  <div class="field">
+    <label>Kebutuhan PC</label>
+    <select id="need">
+      <option value="">-- Pilih Misi --</option>
+      <option value="6000000">A — PC Belajar & Office (maks. Rp6.000.000)</option>
+      <option value="8000000">B — PC Desain Grafis (maks. Rp8.000.000)</option>
+      <option value="12000000">C — PC Gaming (maks. Rp12.000.000)</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>Anggaran Maksimal</label>
+    <input id="budget" readonly placeholder="Pilih misi terlebih dahulu">
+  </div>
+</div>
+<label><b>Target utama PC:</b></label>
+<textarea placeholder="Contoh: digunakan untuk belajar, Microsoft Office, browsing, dan tugas sekolah."></textarea>
+</section>
+
+<section class="card">
+<h2>4. Komponen PC</h2>
+<table>
+<thead><tr><th>No.</th><th>Komponen</th><th>Merek & Tipe</th><th>Spesifikasi Penting</th><th>Harga</th></tr></thead>
+<tbody id="parts">
+<tr><td>1</td><td><b>Processor / CPU</b></td><td><input></td><td><input placeholder="Contoh: socket, core/thread"></td><td><input class="price" type="number" min="0" oninput="calculate()"></td></tr>
+<tr><td>2</td><td><b>Motherboard</b></td><td><input></td><td><input placeholder="Socket, chipset, DDR4/DDR5"></td><td><input class="price" type="number" min="0" oninput="calculate()"></td></tr>
+<tr><td>3</td><td><b>RAM</b></td><td><input></td><td><input placeholder="DDR4/DDR5, kapasitas, MHz"></td><td><input class="price" type="number" min="0" oninput="calculate()"></td></tr>
+<tr><td>4</td><td><b>SSD / HDD</b></td><td><input></td><td><input placeholder="Jenis & kapasitas"></td><td><input class="price" type="number" min="0" oninput="calculate()"></td></tr>
+<tr><td>5</td><td><b>VGA / GPU</b></td><td><input></td><td><input placeholder="Model & VRAM"></td><td><input class="price" type="number" min="0" oninput="calculate()"></td></tr>
+<tr><td>6</td><td><b>PSU</b></td><td><input></td><td><input placeholder="Watt & 80 PLUS"></td><td><input class="price" type="number" min="0" oninput="calculate()"></td></tr>
+<tr><td>7</td><td><b>Casing</b></td><td><input></td><td><input placeholder="Form factor / ukuran"></td><td><input class="price" type="number" min="0" oninput="calculate()"></td></tr>
+<tr><td>8</td><td><b>CPU Cooler</b></td><td><input></td><td><input placeholder="Jika diperlukan"></td><td><input class="price" type="number" min="0" oninput="calculate()"></td></tr>
+<tr><td>9</td><td><b>Fan tambahan</b></td><td><input></td><td><input placeholder="Jumlah/ukuran"></td><td><input class="price" type="number" min="0" oninput="calculate()"></td></tr>
+</tbody>
+</table>
+<div class="totalbox"><span>TOTAL HARGA</span><span id="total">Rp0</span></div>
+<p class="small">Masukkan harga dari simulasi Enterkomputer. Harga di website dapat berubah.</p>
+</section>
+
+<section class="card">
+<h2>5. Analisis Pilihan</h2>
+<div class="grid">
+<div>
+<h3>Processor</h3>
+<textarea placeholder="Mengapa processor ini dipilih?"></textarea>
+</div>
+<div>
+<h3>Motherboard</h3>
+<textarea placeholder="Mengapa motherboard ini dipilih?"></textarea>
+</div>
+<div>
+<h3>RAM</h3>
+<textarea placeholder="Mengapa kapasitas/jenis RAM ini dipilih?"></textarea>
+</div>
+<div>
+<h3>Storage</h3>
+<textarea placeholder="Mengapa memilih SSD/HDD tersebut?"></textarea>
+</div>
+<div>
+<h3>VGA / GPU</h3>
+<textarea placeholder="Mengapa menggunakan/tidak menggunakan VGA tambahan?"></textarea>
+</div>
+<div>
+<h3>PSU</h3>
+<textarea placeholder="Mengapa PSU tersebut dipilih?"></textarea>
+</div>
+</div>
+</section>
+
+<section class="card">
+<h2>6. Analisis Anggaran</h2>
+<div class="grid">
+<div class="field"><label>Total harga PC</label><input id="total2" readonly></div>
+<div class="field"><label>Sisa anggaran</label><input id="remaining" readonly></div>
+</div>
+<h3>Apakah rancangan masih sesuai anggaran?</h3>
+<div class="radio">
+<label><input type="radio" name="budgetok"> Ya</label>
+<label><input type="radio" name="budgetok"> Tidak</label>
+</div>
+<h3>Jika melebihi anggaran, komponen apa yang akan diubah?</h3>
+<textarea></textarea>
+<h3>Mengapa?</h3>
+<textarea></textarea>
+</section>
+
+<section class="card">
+<h2>7. Tantangan Upgrade</h2>
+<div class="warning">
+<b>Situasi:</b> Pelanggan ingin PC lebih cepat, tetapi tidak ingin mengganti semua komponen.
+</div>
+<h3>Komponen yang akan di-upgrade:</h3>
+<input>
+<h3>Alasan:</h3>
+<textarea></textarea>
+</section>
+
+<section class="card">
+<h2>8. Kesimpulan</h2>
+<p>Lengkapi kalimat berikut.</p>
+<label><b>Sebelum merakit PC, hal yang paling penting diperhatikan adalah...</b></label>
+<textarea></textarea>
+<label><b>Processor dan motherboard harus memperhatikan...</b></label>
+<textarea></textarea>
+<label><b>RAM harus memperhatikan...</b></label>
+<textarea></textarea>
+<label><b>PSU harus memperhatikan...</b></label>
+<textarea></textarea>
+<label><b>Hal baru yang saya pelajari...</b></label>
+<textarea></textarea>
+</section>
+
+<section class="card">
+<h2>9. Refleksi Kelompok</h2>
+<table>
+<thead><tr><th>Pernyataan</th><th>Belum</th><th>Cukup</th><th>Bisa</th></tr></thead>
+<tbody>
+<tr><td>Saya dapat mengenali komponen PC.</td><td><input type="radio" name="r1"></td><td><input type="radio" name="r1"></td><td><input type="radio" name="r1"></td></tr>
+<tr><td>Saya dapat menjelaskan fungsi komponen PC.</td><td><input type="radio" name="r2"></td><td><input type="radio" name="r2"></td><td><input type="radio" name="r2"></td></tr>
+<tr><td>Saya dapat memilih processor dan motherboard yang sesuai.</td><td><input type="radio" name="r3"></td><td><input type="radio" name="r3"></td><td><input type="radio" name="r3"></td></tr>
+<tr><td>Saya dapat memilih RAM yang sesuai.</td><td><input type="radio" name="r4"></td><td><input type="radio" name="r4"></td><td><input type="radio" name="r4"></td></tr>
+<tr><td>Saya dapat memilih PSU sesuai kebutuhan.</td><td><input type="radio" name="r5"></td><td><input type="radio" name="r5"></td><td><input type="radio" name="r5"></td></tr>
+<tr><td>Saya dapat menghitung total harga PC.</td><td><input type="radio" name="r6"></td><td><input type="radio" name="r6"></td><td><input type="radio" name="r6"></td></tr>
+<tr><td>Saya dapat memeriksa kompatibilitas komponen.</td><td><input type="radio" name="r7"></td><td><input type="radio" name="r7"></td><td><input type="radio" name="r7"></td></tr>
+</tbody>
+</table>
+<h3>Bagian tersulit dalam simulasi rakit PC hari ini:</h3>
+<textarea></textarea>
+<h3>Apa yang ingin dicoba saat praktik merakit PC secara langsung?</h3>
+<textarea></textarea>
+</section>
+
+<section class="card no-print">
+<h2>🔗 Akses Simulasi Enterkomputer</h2>
+<p>Gunakan fitur <b>Simulasi Rakit PC</b> di Enterkomputer. Fitur simulasi menyediakan pilihan dengan pengecekan kompatibilitas processor–motherboard berdasarkan socket serta motherboard–RAM berdasarkan tipe RAM.</p>
+<a class="linkbtn primary" href="https://www.enterkomputer.com/simulasi" target="_blank" rel="noopener">Buka Simulasi Rakit PC ↗</a>
+<div class="btnrow">
+<button class="green" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
+<button class="secondary" onclick="saveData()">💾 Simpan Isian di Browser</button>
+<button class="secondary" onclick="loadData()">↩️ Muat Isian</button>
+<button class="secondary" onclick="clearData()">🗑️ Bersihkan</button>
+</div>
+</section>
+
+<footer>
+LKPD Simulasi Rakit PC • Informatika • Gunakan data harga sesuai simulasi pada saat kegiatan.
+</footer>
+</div>
+
+<script>
+const members = [
+"ABDUL KARIM","AFIDA FAIRUS FATIN","AGUNG SETIAWAN","AILSA AGRA MAYCHANA",
+"ANASTASIA VIERA GERNADI","ARDIAN CAHYO SAPUTRO","AULIA NUGRAHENI ASOKA CINTA",
+"AYUDHYA PUTRI GIOVERRY","BINTANG","DELA ALVIAH PRIANA NABILA","DIMAS FIRTA SANTAYA",
+"DZIKRI DWI ANGGAKARA","ELSA SETYOWATI","FAISAL UMAR MANDALA","FARDAN ARDHIONA YUDHATAMA",
+"IBNU ARIEF IKHSAN","ILHAM MANDALATAMA WIBOWO","INDRA SYAH PUTRA","INDRIANA VALIN",
+"KIRANA KARUNIA PUTRI","LUQMAN HAKIM","MARSHA DWI SAFITRI","MICHELP YONERI",
+"MOHAMAD FAJAR PRATAMA","MUHAMAD RENDRA HARIYANTO","NAUFAL ASYRAF RIZQULLAH",
+"NAZWA RIMA PUTRI","PRADIGTA AULIA HAYUNINGTYAS","RAVADITYA ISMAWAN",
+"SALSA NURUL FATIMAH","SANDY FEBRI SETIAWAN","SHAKILLA RAHMADHANI PUTRI",
+"TEGAR ANGGARA SUSILO","VIKO REVALINO ARDYANZAH","ZAHRO NUR HANIFAH","ZULFA LAILA"
+];
+
+function fillMembers(){
+  ["member1","member2"].forEach(id=>{
+    const s=document.getElementById(id);
+    members.forEach(m=>{const o=document.createElement("option");o.value=m;o.textContent=m;s.appendChild(o);});
+  });
+}
+function rupiah(n){return new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n||0)}
+function calculate(){
+  let total=0;
+  document.querySelectorAll(".price").forEach(i=>total += Number(i.value)||0);
+  document.getElementById("total").textContent=rupiah(total);
+  document.getElementById("total2").value=rupiah(total);
+  const budget=Number(document.getElementById("need").value)||0;
+  document.getElementById("remaining").value=budget?rupiah(budget-total):"Pilih misi terlebih dahulu";
+}
+document.getElementById("need").addEventListener("change",function(){
+  document.getElementById("budget").value=this.value?rupiah(Number(this.value)):"";
+  calculate();
+});
+function saveData(){
+  const data={};
+  document.querySelectorAll("input,select,textarea").forEach((el,i)=>{
+    if(el.type==="radio"||el.type==="checkbox") data["x"+i]=el.checked;
+    else data["x"+i]=el.value;
+  });
+  localStorage.setItem("lkpdRakitPC",JSON.stringify(data));
+  alert("Isian berhasil disimpan di browser.");
+}
+function loadData(){
+  const data=JSON.parse(localStorage.getItem("lkpdRakitPC")||"null");
+  if(!data){alert("Belum ada data yang disimpan.");return;}
+  document.querySelectorAll("input,select,textarea").forEach((el,i)=>{
+    if(Object.prototype.hasOwnProperty.call(data,"x"+i)){
+      if(el.type==="radio"||el.type==="checkbox") el.checked=data["x"+i];
+      else el.value=data["x"+i];
+    }
+  });
+  calculate();
+  alert("Isian berhasil dimuat.");
+}
+function clearData(){
+  if(!confirm("Hapus semua isian pada halaman?")) return;
+  document.querySelectorAll("input,select,textarea").forEach(el=>{
+    if(el.type==="radio"||el.type==="checkbox") el.checked=false;
+    else el.value="";
+  });
+  document.getElementById("total").textContent="Rp0";
+  document.getElementById("total2").value="";
+  document.getElementById("remaining").value="";
+}
+document.getElementById("date").valueAsDate=new Date();
+fillMembers();
+</script>
+</body>
+</html>
